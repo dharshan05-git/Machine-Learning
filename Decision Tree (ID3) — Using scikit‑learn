@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import metrics
+
+# Load dataset
+data = pd.read_csv("play_tennis.csv")
+X = data.iloc[:, :-1]  # features
+y = data.iloc[:, -1]   # target
+
+# Train decision tree classifier
+clf = DecisionTreeClassifier(criterion="entropy")
+clf = clf.fit(X, y)
+
+# Predict on training data
+y_pred = clf.predict(X)
+print("Accuracy:", metrics.accuracy_score(y, y_pred))
